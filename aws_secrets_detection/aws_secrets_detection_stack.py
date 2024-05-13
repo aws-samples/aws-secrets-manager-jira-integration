@@ -81,16 +81,30 @@ class AwsSecretsDetectionStack(Stack):
         ))
 
         # The code that defines your stack goes here
-        aws_secrets_detection= _lambda.Function(
+        aws_secrets_audit_trail_detection= _lambda.Function(
            self,
-           "AwsSecretsDetection",
+           "AWSSecretsAuditTrailDetection",
            runtime=_lambda.Runtime.PYTHON_3_12,
-           handler="aws-secrets-detection.lambda_handler",
+           handler="aws-secrets-audit-trail-detection.lambda_handler",
            code=_lambda.Code.from_asset("lambda"),
            role = lambda_role,
            timeout = duration.seconds(30),
            environment={
-               "TABLE_NAME": "aws-secrets-detection-table"
+               "DYNAMODB_TABLE_NAME": "aws-secrets-detection-table"
+           }
+        )
+        
+        # The code that defines your stack goes here
+        jira_aws_secrets_detection= _lambda.Function(
+           self,
+           "JiraAWSSecretsDetection",
+           runtime=_lambda.Runtime.PYTHON_3_12,
+           handler="jira-aws-secrets-detection.lambda_handler",
+           code=_lambda.Code.from_asset("lambda"),
+           role = lambda_role,
+           timeout = duration.seconds(30),
+           environment={
+               "DYNAMODB_TABLE_NAME": "aws-secrets-detection-table"
            }
         )
 
@@ -184,9 +198,16 @@ class AwsSecretsDetectionStack(Stack):
 
         # add lambda to topic
         #sns_subscription = sns.Subscription(self, "AwsSecretsDetectionSubscription",
-        sns.Subscription(self, "AwsSecretsDetectionSubscription",
+        sns.Subscription(self, "AWSSecretsAuditTrailDetectionSubscription",
             topic=topic,
-            endpoint=aws_secrets_detection.function_arn,
+            endpoint=aws_secrets_audit_trail_detection.function_arn,
+            protocol=sns.SubscriptionProtocol.LAMBDA,
+            #subscription_role_arn=lambda_role.role_arn,
+        )
+        
+        sns.Subscription(self, "JiraAWSSecretsDetectionSubscription",
+            topic=topic,
+            endpoint=jira_aws_secrets_detection.function_arn,
             protocol=sns.SubscriptionProtocol.LAMBDA,
             #subscription_role_arn=lambda_role.role_arn,
         )
