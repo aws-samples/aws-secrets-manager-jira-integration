@@ -1,0 +1,22 @@
+{
+  "Records": [
+    {
+      "EventSource": "aws:sns",
+      "EventVersion": "1.0",
+      "EventSubscriptionArn": "arn:aws:sns:us-east-1:123456789012:aws-secrets-topic:c41a66e2-ea83-4ee7-bc24-596b7ead7673",
+      "Sns": {
+        "Type": "Notification",
+        "MessageId": "bba21999-485d-5e23-b1be-47320035a387",
+        "TopicArn": "arn:aws:sns:us-east-1:123456789012:5:aws-secrets-topic",
+        "Subject": null,
+        "Message": "{\"automationData\":{\"jira-summary\":\"Secrets Update Change for Key pinecone\",\"jira-key\":\"KAN-13\",\"jira-aws-secret-key-arn\":\"arn:aws:secretsmanager:us-east-1:123456789012:secret:pinecone-9Azp5H\",\"jira-timestamp\":\"2024-04-30T19:27:35.7+0000\"}}",
+        "Timestamp": "2024-04-30T19:27:36.118Z",
+        "SignatureVersion": "1",
+        "Signature": "B5m2BA7l2OyPTG2JSwdrpSAWFA+JYX/XZ3PFyfsL05S6x/nWlL+kmSgngR4yQh5BAwbXVuQfHJNydY0WdYUdlIeW/HlQHxVVtfacI/AvWTHqXDMlakf+v0HJZ6Cv4L9rBeSnrUvhdArym86vxCVora41Xbs8E514RhSCthWt7eYEKjvRXeF5dotvfWfTnKL1KJqC8rYPtgWjzWWk2D6CTdNcPWxSWK2nTI+RgGiTS6zh4Guei7vt1k2YS15JhFlFhZ6AmSGtGEIxahGeTkH5moKrv/7qjwbqJDNNi3QGlSJleooW0Z4x+p7ykzajn+V5XUL2EMVVFLXkqbXATCtyFQ==",
+        "SigningCertUrl": "https://sns.us-east-1.amazonaws.com/SimpleNotificationService-ABC123.pem",
+        "UnsubscribeUrl": "https://sns.us-east-1.amazonaws.com/?Action=Unsubscribe&SubscriptionArn=arn:aws:sns:us-east-1:123456789012:aws-secrets-topic:ABC123",
+        "MessageAttributes": {}
+      }
+    }
+  ]
+}
