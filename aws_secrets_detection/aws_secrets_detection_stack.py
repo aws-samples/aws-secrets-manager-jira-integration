@@ -178,12 +178,12 @@ class AwsSecretsDetectionStack(Stack):
 
         # Create an sns topic
 
-        topic = sns.Topic(self, "AwsSecretsDetectionTopic")
+        jira_topic = sns.Topic(self, "JiraAWSSecretsDetectionTopic")
         statements_event_bus=iam.PolicyStatement(
                     sid="AllowPublishEvents",
                     effect=iam.Effect.ALLOW,
                     actions=["sns:Publish"],
-                    resources=[topic.topic_arn],
+                    resources=[jira_topic.topic_arn],
                     principals= [iam.AnyPrincipal()],
                     conditions={
                         "StringEquals": {
@@ -191,22 +191,37 @@ class AwsSecretsDetectionStack(Stack):
                     }
                     }
         )
-        topic.add_to_resource_policy(statements_event_bus)
+        jira_topic.add_to_resource_policy(statements_event_bus)
+        
+        secrets_topic = sns.Topic(self, "AWSSecretsAuditTrailDetectionTopic")
+        statements_event_bus=iam.PolicyStatement(
+                    sid="AllowPublishEvents",
+                    effect=iam.Effect.ALLOW,
+                    actions=["sns:Publish"],
+                    resources=[secrets_topic.topic_arn],
+                    principals= [iam.AnyPrincipal()],
+                    conditions={
+                        "StringEquals": {
+                        "aws:PrincipalOrgID": os.getenv('AWS_PRINCIPAL_ORG_ID')
+                    }
+                    }
+        )
+        secrets_topic.add_to_resource_policy(statements_event_bus)
 
         # Add a target to the rule (example target - SNS topic)
-        rule.add_target(targets.SnsTopic(topic))
+        rule.add_target(targets.SnsTopic(secrets_topic))
 
         # add lambda to topic
         #sns_subscription = sns.Subscription(self, "AwsSecretsDetectionSubscription",
         sns.Subscription(self, "AWSSecretsAuditTrailDetectionSubscription",
-            topic=topic,
+            topic=secrets_topic,
             endpoint=aws_secrets_audit_trail_detection.function_arn,
             protocol=sns.SubscriptionProtocol.LAMBDA,
             #subscription_role_arn=lambda_role.role_arn,
         )
         
         sns.Subscription(self, "JiraAWSSecretsDetectionSubscription",
-            topic=topic,
+            topic=jira_topic,
             endpoint=jira_aws_secrets_detection.function_arn,
             protocol=sns.SubscriptionProtocol.LAMBDA,
             #subscription_role_arn=lambda_role.role_arn,
