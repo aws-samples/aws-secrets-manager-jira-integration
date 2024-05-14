@@ -2,6 +2,13 @@
 # AWS Secrets Manager integration with Jira
 ## Detecting AWS Secret changes and Jira ticket integration
 
+## Table of Contents
+- [Introduction](#introduction)
+- [Problem Statement](#problem-statement)
+
+## Introduction
+This repository contains code to help customers who want to be able to track AWS Secrets Manager changes with Jira Change Management Processes.  This solution helps with reconciliing changes made to AWS Secrets and change request tasks submitted from the Jira platform.
+
 ## Problem Statement: 
 Customer wants to implement a workflow that links changes in AWS Secrets Manager to approved Jira tickets, ensuring changes are audited and approved. The goal is to automate this process, integrate logging (via CloudTrail), and find a reliable method beyond an "honor system" for tracking secret changes and approvals. At high level, creating a seamless workflow that ties together secrets management, audit trails, and change approval processes.
 
