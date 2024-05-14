@@ -7,7 +7,6 @@
 - [Problem Statement](#problem-statement)
 - [Requirements](#requirements)
 - [Prerequisites](#prerequisites)
-- [Requirements](#requirements)
 - [Useful Commands](#useful-commands)
 - [Integrating with Jira](#Integrating-Jira-events-to-AWS)
 
