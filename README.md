@@ -9,7 +9,7 @@
 - [Prerequisites](#prerequisites)
 - [Requirements](#requirements)
 - [Useful Commands](#useful-commands)
-- [Integrating with Jira]Integrating-Jira-events-to-AWS
+- [Integrating with Jira](#Integrating-Jira-events-to-AWS
 
 ## Introduction
 This repository contains code to help customers who want to be able to track AWS Secrets Manager changes with Jira Change Management Processes.  This solution helps with reconciliing changes made to AWS Secrets and change request tasks submitted from the Jira platform.
