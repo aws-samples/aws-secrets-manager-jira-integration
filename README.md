@@ -19,7 +19,6 @@ Customer wants to implement a workflow that links changes in AWS Secrets Manager
 7. SNS topic invokes Lambda function: The SNS topic invokes the Lambda function, which processes the secret update or creation event and creates a DynamoDB record. 
 8. Lambda function creates DynamoDB record: The Lambda function creates a DynamoDB record with the details of the secret update or creation event, such as the secret name, value, and ARN. 
 8. Users accesses Amazon Athena to queries DynamoDB table looking for discrepancies in updates: Athena is an AWS service that enables users to analyze large amounts of data stored in Amazon S3 using SQL. In this scenario, Athena is used to query the DynamoDB table to check for discrepancies in the updates made to the secret.
-### 
 
 ## Requirements
 
