@@ -5,6 +5,11 @@
 ## Table of Contents
 - [Introduction](#introduction)
 - [Problem Statement](#problem-statement)
+- [Requirements](#requirements)
+- [Prerequisites](#prerequisites)
+- [Requirements](#requirements)
+- [Useful Commands](#useful-commands)
+- [Integrating with Jira]Integrating-Jira-events-to-AWS
 
 ## Introduction
 This repository contains code to help customers who want to be able to track AWS Secrets Manager changes with Jira Change Management Processes.  This solution helps with reconciliing changes made to AWS Secrets and change request tasks submitted from the Jira platform.
@@ -35,7 +40,7 @@ Customer wants to implement a workflow that links changes in AWS Secrets Manager
 - [AWS CDK](https://docs.aws.amazon.com/cdk/latest/guide/cli.html) installed and configured
 - [AWS Athena Setup](https://docs.aws.amazon.com/athena/latest/ug/setting-up.html)
 
-## Prequisites
+## Prerequisites
 
 You will need to setup three environment variables before deploying application.  Below are the environment variables that will need to be setup. 
 
