@@ -18,7 +18,7 @@ Customer wants to implement a workflow that links changes in AWS Secrets Manager
 
 ## Application Components
 
-![Architecture_Diagram](./assets/AWS Secrets Mangager-Jira Changes Monitoring Overview-Flow.png)
+![Architecture_Diagram](./assets/"AWS Secrets Mangager-Jira Changes Monitoring Overview-Flow.png")
 
 ### 
 1. AWS Secret Updated or Created: An AWS secret is a confidential data value that can be used to authenticate and authorize access to AWS resources. In this scenario, a secret is updated or created in AWS.
